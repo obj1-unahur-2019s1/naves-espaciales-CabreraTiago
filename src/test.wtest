@@ -1,0 +1,26 @@
+import NaveCombate.*
+
+test "test mensaje" {
+
+	var combate = new NaveCombate()
+	
+	combate.emitirMensaje("12345")
+	combate.emitirMensaje("1234")
+	combate.emitirMensaje("1234567")
+	combate.emitirMensaje("123456")
+	
+	assert.equals("12345", combate.primerMensajeEmitido())
+	assert.equals("123456", combate.ultimoMensajeEmitido())
+	assert.equals([ "12345", "1234", "1234567", "123456" ], combate.mensajesEmitidos())
+		
+	assert.that(combate.esEscueta())
+	
+	combate.emitirMensaje("1234567891234567891234567891234567")
+	
+	assert.notThat(combate.esEscueta())
+	
+	assert.that(combate.emitioMensaje("1234"))
+
+	assert.notThat(combate.emitioMensaje("Hola"))	
+
+}
